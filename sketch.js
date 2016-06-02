@@ -6,7 +6,7 @@ var mySec = [300, 200, 120, 80, 30]
 var myCol = ["red", "orange", "yellow", "green", "blue"]
 
 function setup() {
-  createCanvas(300, 300);
+  createCanvas(window.innerWidth, window.innerHeight);
   myP = createP();
   //24시 에러 전일 2400을 다음날 0100에 불러오지 못함 js time데이터를 이용하여 수정
   loadJSON('http://openapi.seoul.go.kr:8088/5770436776646f623736786b7a6a62/json/TimeAverageAirQuality/2/2/' + '' + year() + pad2(month()) + pad2(day()) + pad2(hour() - 1) + "00", gotdata)
