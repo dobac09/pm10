@@ -10,6 +10,7 @@ var logt;
 var d = new Date();
 var r = 10; //ellipse radius
 var ts = 50; //text size
+var maxHeight = 300; // maximum height of graph
 
 function setup() {
   createCanvas(window.innerWidth, window.innerHeight);
@@ -41,7 +42,7 @@ function gotRealtimedata(data) {
   now_h = data.ListAirQualityByDistrictService.row[0].MSRDATE.slice(-4, -2);
   now_h *= 1;
   println(now_h);
-  var pm10_now_posY = map(pm10_now, 0, 400, 0, height);
+  var pm10_now_posY = map(pm10_now, 0, maxHeight, 0, height);
   var pm10_now_posX = map(now_h, 0, 24, 0, width) + width / 48;
   fill(255);
   noStroke();
@@ -78,14 +79,14 @@ function logLogdata(data) {
       if (!pm10_log.hasOwnProperty(keys)) {
         continue;
       }
-      var pm10_log_posY = height - map(pm10_log[keys], 0, 400, 0, height);
+      var pm10_log_posY = height - map(pm10_log[keys], 0, maxHeight, 0, height);
       var pm10_log_posX = map(keys, 0, 24, 0, width) + width / 48;
       fill(setcolor(pm10_log[keys]));
       noStroke();
       ellipse(pm10_log_posX, pm10_log_posY, r, r);
 
       if (pm10_log[keys - 1]) {
-        var pm10_log_posY2 = height - map(pm10_log[keys - 1], 0, 400, 0, height);
+        var pm10_log_posY2 = height - map(pm10_log[keys - 1], 0, maxHeight, 0, height);
         var pm10_log_posX2 = map(keys - 1, 0, 24, 0, width) + width / 48;
         stroke(setcolor(pm10_log[keys]));
         strokeWeight(3);
