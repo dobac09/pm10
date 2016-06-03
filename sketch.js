@@ -74,23 +74,23 @@ function logLogdata(data) {
     println("loading json finished");
 
     // visualize now!
-    for (let key in pm10_log) {
-      if (!pm10_log.hasOwnProperty(key)) {
+    for (var keys in pm10_log) {
+      if (!pm10_log.hasOwnProperty(keys)) {
         continue;
       }
-      var pm10_log_posY = height-map(pm10_log[key], 0, 400, 0, height);
-      var pm10_log_posX = map(key, 0, 24, 0, width) + width / 48;
-      fill(setcolor(pm10_log[key]));
+      var pm10_log_posY = height - map(pm10_log[keys], 0, 400, 0, height);
+      var pm10_log_posX = map(keys, 0, 24, 0, width) + width / 48;
+      fill(setcolor(pm10_log[keys]));
       noStroke();
       ellipse(pm10_log_posX, pm10_log_posY, r, r);
 
-      if (pm10_log[key - 1]) {
-        var pm10_log_posY2 = height-map(pm10_log[key-1], 0, 400, 0, height);
-        var pm10_log_posX2 = map(key-1, 0, 24, 0, width) + width / 48;
-        stroke(setcolor(pm10_log[key]));
+      if (pm10_log[keys - 1]) {
+        var pm10_log_posY2 = height - map(pm10_log[keys - 1], 0, 400, 0, height);
+        var pm10_log_posX2 = map(keys - 1, 0, 24, 0, width) + width / 48;
+        stroke(setcolor(pm10_log[keys]));
         strokeWeight(3);
-        line(pm10_log_posX,pm10_log_posY,pm10_log_posX2,pm10_log_posY2)
-        }
+        line(pm10_log_posX, pm10_log_posY, pm10_log_posX2, pm10_log_posY2)
+      }
       }
     }
   }
